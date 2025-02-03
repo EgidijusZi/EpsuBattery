@@ -7,6 +7,7 @@ from PIL import Image, ImageTk
 from test_sequence import test_sequences
 import tkinter.messagebox as MessageBox
 from datetime import datetime
+from header import Header
 import threading
 import subprocess
 import collections
@@ -23,21 +24,13 @@ class BatteryTestApp:
         self.root.title("Battery Test GUI")
         self.root.geometry("900x700")
         self.root.minsize(600, 500)
-        self.setup_header()
-        self.setup_channels()
-        self.setup_plots()
-        self.voltage_data = collections.deque(maxlen=1000000)
-        self.time_data = collections.deque(maxlen=1000000)
-        self.ani = None
-
-    def setup_header(self):
-        self.header_frame = tk.Frame(self.root)
-        self.header_frame.pack(fill=tk.X, pady=10)
-        self.logo_image = Image.open("C:\\Users\\sto\\PycharmProjects\\aut\\DAT_logo_FN.jpg")
-        self.logo_image = self.logo_image.resize((100, 100), Image.Resampling.LANCZOS)
-        self.logo_photo = ImageTk.PhotoImage(self.logo_image)
-        tk.Label(self.header_frame, image=self.logo_photo).grid(row=0, column=0, padx=10)
-        tk.Label(self.header_frame, text="DAT Battery Maintenance System", font=("Helvetica", 16, "bold")).grid(row=0, column=1, padx=10)
+        self.header = Header(self.root)
+        #self.setup_header()
+        #self.setup_channels()
+        #self.setup_plots()
+        #self.voltage_data = collections.deque(maxlen=1000000)
+        #self.time_data = collections.deque(maxlen=1000000)
+        #self.ani = None
 
     def setup_channels(self):
         self.channels_frame = tk.Frame(self.root)
